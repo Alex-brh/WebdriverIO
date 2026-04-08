@@ -1,15 +1,12 @@
 import { $ } from '@wdio/globals' // selectors
-import Page from './page.js';
+import Page from './page';
 import { expect } from '@wdio/globals'
-import { assert } from 'node:console';
 
 
 let page = new Page();
 
 
-/**
- * sub page containing specific selectors and methods for a specific page
- */
+//------------------------------------------------- HOME PAGE SELECTORS ---------------------------------------------------
 class HomePage extends Page {
     /**
      * define selectors using getter methods
@@ -22,10 +19,8 @@ class HomePage extends Page {
         return $$('li[class^="jw-menu-item"] > a > span')[index];
     }
 
-    /**
-     * a method to encapsule automation code to interact with the page
-     * e.g. to login using username and password
-     */
+
+    // ----------------------------------------------- HOME PAGE METHODS ------------------------------------------------
     public async navigateToHomePage () {
         page.open(''); // open home page
         await this.homePageHeader.waitForDisplayed();
