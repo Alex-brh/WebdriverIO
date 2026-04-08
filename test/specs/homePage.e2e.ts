@@ -1,8 +1,4 @@
 import HomePage from '../pageobjects/home.page.js'
-import Page from '../pageobjects/page.js';
-
-const page = new Page();
-
 
 describe('Navigate to "Home" page and', () => {
     it('validate header', async () => {
@@ -24,14 +20,7 @@ describe('Navigate to "Home" page and', () => {
         ]
         for (const menuItem of menuItemDetails) {
             await HomePage.validateMenuItemsOnTopBar({ index: menuItem.index, expectedMenuItemText: menuItem.expectedMenuItemText });
-            await page.validateElementAttribute(
-                {
-                    selector: 'li[class^="jw-menu-item"] > a',
-                    index: menuItem.index,
-                    attributeName: "href",
-                    expectedAttributeValue: menuItem.href
-                }
-            )
+            await HomePage.validateMenuItemHrefAttribute({ index: menuItem.index, expectedHrefValue: menuItem.href });
         }
     })
 
