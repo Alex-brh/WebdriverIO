@@ -10,6 +10,6 @@ export default class Page {
     * @param path path of the sub page (e.g. /path/to/page.html)
     */
     public open (path: string) {
-        return browser.url(`https://the-internet.herokuapp.com/${path}`)
+        return browser.url(`https://free-5288352.webadorsite.com//${path}`);
     }
 }
