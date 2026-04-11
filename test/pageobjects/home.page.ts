@@ -56,6 +56,15 @@ class HomePage extends Page {
             trimOrNot: true })
     }
 
+    public async validateAllH1HeadersOnHomePage({ expectedH1Text, index }: { expectedH1Text: string, index: number }) {
+        const h1Headers = 'h1[class^="jw-heading"]';
+        page.validateElementText({ 
+            selector: h1Headers, 
+            index: index, 
+            expectedText: expectedH1Text,
+            ignoreCaseOrNot: false, 
+            trimOrNot: true })
+    }
 }
 
 export default new HomePage();

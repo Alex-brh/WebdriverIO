@@ -29,4 +29,17 @@ describe('Navigate to "Home" page and', () => {
         await homePage.validateMainTopSlideText('Discover Unique Ways To Create Test Scripts');
     });
 
+    it('validate the H1 headers on the page', async () => {
+       // Validate all H1 headers on the home page
+        const hiHeaders = [
+            { index: 0, expectedH1Text: `Welcome to Alex's test automation site for practice` },
+            { index: 1, expectedH1Text: 'Verify New Collection' },
+            { index: 2, expectedH1Text: 'Discover Our Exclusive Collection' },
+            { index: 3, expectedH1Text: 'More stuff' }
+        ];
+        for (const h1Header of hiHeaders) {
+            await homePage.validateAllH1HeadersOnHomePage({ expectedH1Text: h1Header.expectedH1Text, index: h1Header.index });
+        }
+    });
+
 })
