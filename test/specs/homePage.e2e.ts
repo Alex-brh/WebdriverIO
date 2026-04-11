@@ -42,4 +42,19 @@ describe('Navigate to "Home" page and', () => {
         }
     });
 
+    it('validate the paragraphs on the home page', async () => {
+        const paragraphDetails = [
+            { index: 0, expectedParagraphText: `DISCLAIMER: This is NOT a real e-comm website. It's being used for educational purposes ONLY. No items can be purchased and/or delivered through this website.` },
+            { index: 1, expectedParagraphText: `Don't miss out on the chance to save while enjoying the quality and service you love. Keep an eye on this space for the latest updates and grab these amazing deals while they last!` },
+            { index: 2, expectedParagraphText: 'Jessica L.' },
+            { index: 3, expectedParagraphText: 'Browse our special selection of unique items and find something new today!' },
+            { index: 4, expectedParagraphText: `Don't miss out on the chance to save while enjoying the quality and service you love. Keep an eye on this space for the latest updates and grab these amazing deals while they last!` },
+            { index: 5, expectedParagraphText: `Online Store is dedicated to bringing you a diverse range of random items, carefully selected to suit various tastes and needs. Our mission is to provide a one-stop shop where customers can find everything from the unexpected to the essential. We pride ourselves on offering quality products at competitive prices, ensuring that our customers always get the best value for their money. At Online Store, customer satisfaction is our top priority, and we strive to exceed expectations with every order. Join our growing community of happy customers and experience the convenience and variety that Online Store has to offer.` },
+            { index: 6, expectedParagraphText: `DISCLAIMER: This is NOT a real` }
+        ]
+        for (const paragraph of paragraphDetails) {
+            await homePage.validateHomePageParagraphs({ expectedParagraphText: paragraph.expectedParagraphText, index: paragraph.index });
+        }
+    });
+
 })

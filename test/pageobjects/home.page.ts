@@ -65,6 +65,16 @@ class HomePage extends Page {
             ignoreCaseOrNot: false, 
             trimOrNot: true })
     }
+
+    public async validateHomePageParagraphs({ expectedParagraphText, index }: { expectedParagraphText: string, index: number }) {
+        const paragraph = `div[class="jw-element-imagetext-text"] > p`;
+        page.validateElementText({ 
+            selector: paragraph, 
+            index: index, 
+            expectedText: expectedParagraphText, 
+            ignoreCaseOrNot: false, 
+            trimOrNot: true })
+    }
 }
 
 export default new HomePage();
