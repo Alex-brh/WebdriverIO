@@ -46,6 +46,15 @@ class HomePage extends Page {
         await expect(menuItem).toHaveAttribute("href", expectedHrefValue);
     }
 
+    public async validateMainTopSlideText(expectedSlideText: string) {
+        const mainTopSlideTextElement = 'div[class="jw-slideshow-title"]';
+        page.validateElementText({ 
+            selector: mainTopSlideTextElement, 
+            index: 0, 
+            expectedText: expectedSlideText, 
+            ignoreCaseOrNot: false, 
+            trimOrNot: true })
+    }
 
 }
 

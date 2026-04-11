@@ -1,3 +1,4 @@
+import homePage from '../pageobjects/home.page.js';
 import HomePage from '../pageobjects/home.page.js'
 
 describe('Navigate to "Home" page and', () => {
@@ -24,5 +25,8 @@ describe('Navigate to "Home" page and', () => {
         }
     })
 
+    it('validate the main top slide text', async () => {
+        await homePage.validateMainTopSlideText('Discover Unique Ways To Create Test Scripts');
+    });
 
 })
