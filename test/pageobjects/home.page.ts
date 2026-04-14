@@ -28,12 +28,20 @@ class HomePage extends Page {
         await this.homePageHeader.waitForDisplayed();
     }
 
+    public async navigateToCustomPage(pageMenuItemText: string) {
+        pageMenuItemText = pageMenuItemText.trim();
+        const menuItem = $(`a=${pageMenuItemText}`);
+        await menuItem.waitForDisplayed();
+        await menuItem.click();
+    }
+
     public async validateHomePageHeader(expectedHeaderText: string) {
         await this.homePageHeader.waitForDisplayed();
         await expect(this.homePageHeader).toHaveText(expectedHeaderText, { ignoreCase: true, trim: true }) // check header text
     }
 
     public async validateMenuItemsOnTopBar({ index, expectedMenuItemText }: { index: number, expectedMenuItemText: string }) {
+        expectedMenuItemText = expectedMenuItemText.trim();
         console.log(`Validating menu item at index ${index} with text ${expectedMenuItemText}.`);
         const menuItem = this.getMenuItemsOnTopBar(index);
         await menuItem.waitForDisplayed();
