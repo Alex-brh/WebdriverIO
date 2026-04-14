@@ -1,5 +1,6 @@
 import homePage from '../pageobjects/home.page.js';
-import HomePage from '../pageobjects/home.page.js'
+import HomePage from '../pageobjects/home.page.js';
+import { $ } from '@wdio/globals';
 
 describe('Navigate to "Home" page and', () => {
     it('validate header', async () => {
@@ -29,8 +30,8 @@ describe('Navigate to "Home" page and', () => {
         await homePage.validateMainTopSlideText('Discover Unique Ways To Create Test Scripts');
     });
 
-    it('validate the H1 headers on the page', async () => {
-       // Validate all H1 headers on the home page
+    it('validate the H1 headers', async () => {
+        // Validate all H1 headers on the home page
         const hiHeaders = [
             { index: 0, expectedH1Text: `Welcome to Alex's test automation site for practice` },
             { index: 1, expectedH1Text: 'Verify New Collection' },
@@ -42,7 +43,7 @@ describe('Navigate to "Home" page and', () => {
         }
     });
 
-    it('validate the paragraphs on the home page', async () => {
+    it('validate the paragraphs', async () => {
         const paragraphDetails = [
             { index: 0, expectedParagraphText: `DISCLAIMER: This is NOT a real e-comm website. It's being used for educational purposes ONLY. No items can be purchased and/or delivered through this website.` },
             { index: 1, expectedParagraphText: `Don't miss out on the chance to save while enjoying the quality and service you love. Keep an eye on this space for the latest updates and grab these amazing deals while they last!` },
@@ -57,4 +58,32 @@ describe('Navigate to "Home" page and', () => {
         }
     });
 
+    it('validate buttons', async () => {
+        const buttonDetails = [
+            { index: 3, expectedButtonText: 'Shop Now' },
+            { index: 4, expectedButtonText: 'Shop Now' },
+            { index: 5, expectedButtonText: 'Shop Now' },
+            { index: 6, expectedButtonText: 'Shop Now' },
+        ]
+        for (const button of buttonDetails) {
+            await homePage.validateButtonsOnHomePage({ expectedButtonText: button.expectedButtonText, index: button.index });
+        }
+    });
+
+    it('validate the pictures on the page', async () => {
+        const pictureSelectors = [
+            'div[class^="jw-slideshow-slide-content"]', // main top background img
+            'img[class="jw-element-image__image jw-intrinsic__item"]',
+            'img[class="jw-element-image__image jw-intrinsic__item"]',
+            'img[class="jw-element-image__image jw-intrinsic__item"]',
+            'img[class="jw-element-image__image jw-intrinsic__item"]',
+            'img[class="jw-element-image__image jw-intrinsic__item"]'
+        ]
+
+        for (const selector of pictureSelectors) {
+            const pictureElement = $(selector);
+            await pictureElement.waitForDisplayed();
+            await expect(pictureElement).toBeDisplayed();
+        }
+    });
 })

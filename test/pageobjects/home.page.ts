@@ -75,6 +75,16 @@ class HomePage extends Page {
             ignoreCaseOrNot: false, 
             trimOrNot: true })
     }
+
+    public async validateButtonsOnHomePage({ expectedButtonText, index }: { expectedButtonText: string, index: number }) {
+        const buttons = 'a > span[class="jw-btn-caption"]';
+        page.validateElementText({ 
+            selector: buttons, 
+            index: index, 
+            expectedText: expectedButtonText, 
+            ignoreCaseOrNot: false, 
+            trimOrNot: true })
+    }
 }
 
 export default new HomePage();
