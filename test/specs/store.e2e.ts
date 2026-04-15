@@ -94,4 +94,13 @@ describe('Navigate to "Store" page and', () => {
             expect(disclaimerText).toContain('educational purposes ONLY');
         };
     });
+
+    it('validate each item description content', async () => {
+
+        const productLink = $$('div[class="product__description"] > p');
+        for (let i = 0; i < 4; i++) {
+            expect(productLink[i]).toHaveText(['Description:', '"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."']);
+        }
+    });
+
 });
