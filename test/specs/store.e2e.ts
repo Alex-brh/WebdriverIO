@@ -103,4 +103,15 @@ describe('Navigate to "Store" page and', () => {
         }
     });
 
+    it('validate that the "Add to cart" buttons are disabled', async () => {
+        const addToCartButtons = $$('button[class^="jw-btn product__add-to-cart"]');
+        const addToCartButtonCount = await addToCartButtons.length;
+        expect(addToCartButtonCount).toEqual(3);
+
+        addToCartButtons.forEach(async (button) => {
+            await expect(button).toBeDisabled();
+            expect(button).toHaveText('Disabled');
+        });
+    });
+
 });
