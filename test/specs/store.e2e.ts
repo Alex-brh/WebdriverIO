@@ -114,4 +114,45 @@ describe('Navigate to "Store" page and', () => {
         });
     });
 
+    it('open each product and validate its details page content', async () => {
+
+        const productLinks = $$('h3[class="product__heading heading__no-margin"] > a[href^="/product/"]');
+        const productLinkCount = await productLinks.length;
+        expect(productLinkCount).toEqual(3);
+
+        const products = [
+            { name: 'Best test script A', urlPart: '/product/15277987/best-test-script-a', price: 'CA$0.99', availability: 'Unavailable', additionalOptions:  ['Option A', 'Option B', 'Option C'] },
+            { name: 'Best test script B', urlPart: '/product/15278051/best-test-script-b', price: 'CA$0.89', availability: 'Unavailable' },
+            { name: 'Best test script C', urlPart: '/product/15278052/best-test-script-c', price: 'CA$0.79', availability: 'Unavailable' },
+
+        ];
+
+        for (let i = 0; i < products.length; i++) {
+            const product = $(`h3[class="product__heading heading__no-margin"] > a[href^="${products[i].urlPart}"]`);
+            await product.click();
+            const currentUrl = await browser.getUrl();
+            expect(currentUrl).toContain(products[i].urlPart);
+            // Validate product name
+            await expect($(`h1=${products[i].name}`)).toBeDisplayed();
+            // Validate product price
+            await expect($('div[class="product__price js-product-container__price"] > span')).toHaveText(products[i].price);
+            // Validate product availability
+            await expect($('div[class="product-sticker"]')).toHaveText(products[i].availability);
+            // Validate that the "Add to cart" button is disabled
+            const addToCartButton = $('button[class^="jw-btn product__add-to-cart"]');
+            await expect(addToCartButton).toBeDisabled();
+            expect(addToCartButton).toHaveText('Disabled');
+            // Validate the Add to Wishlist button is disabled
+            const addToWishlistButton = $('button[class^="jw-btn jw-btn--icon-only product__add-to-wishlist"]');
+            await expect(addToWishlistButton).toBeDisabled();
+            // Validate the product description content
+            const productDescription = $$('div[class="product__description"] > p');
+            expect(productDescription[i]).toHaveText('Description:');
+            expect(productDescription[i]).toHaveText('"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."');
+
+            await HomePage.navigateToCustomPage('Store');
+  
+        }
+    });
+
 });
