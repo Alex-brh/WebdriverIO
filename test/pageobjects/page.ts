@@ -5,6 +5,10 @@ import { browser } from '@wdio/globals'
 * that is shared across all page objects
 */
 export default class Page {
+    //----------------------------------------------- SHARED SELECTORS ------------------------------------------------
+    public get selectedMenuItemOnTopBar() {
+        return $('a[class="jw-menu-link js-active-menu-item"]');
+    }
     // --------------------------------------------------------------------------------------------------------
 
     /**
