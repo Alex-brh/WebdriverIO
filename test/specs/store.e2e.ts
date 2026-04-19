@@ -122,7 +122,7 @@ describe('Navigate to "Store" page and', () => {
         expect(productLinkCount).toEqual(3);
 
         const products = [
-            { name: 'Best test script A', urlPart: '/product/15277987/best-test-script-a', price: 'CA$0.99', availability: 'Unavailable'},
+            { name: 'Best test script A', urlPart: '/product/15277987/best-test-script-a', price: 'CA$0.99', availability: 'Unavailable' },
             { name: 'Best test script B', urlPart: '/product/15278051/best-test-script-b', price: 'CA$0.89', availability: 'Unavailable' },
             { name: 'Best test script C', urlPart: '/product/15278052/best-test-script-c', price: 'CA$0.79', availability: 'Unavailable' },
 
