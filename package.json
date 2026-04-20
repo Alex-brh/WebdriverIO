@@ -2,7 +2,6 @@
   "name": "WebdriverIO",
   "type": "module",
   "devDependencies": {
-    "@azure/mcp-win32-x64": "^2.0.1",
     "@badisi/wdio-harness": "^4.3.1",
     "@testing-library/webdriverio": "^3.2.1",
     "@types/node": "^25.5.2",
